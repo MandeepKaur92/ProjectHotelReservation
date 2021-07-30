@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Hotel Website | Home</title>
+		<link rel="stylesheet" href="static/css/style.css">
+		<link rel="stylesheet" href="static/css/login.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script>
+			function validateForm() {
+			let x = document.forms["myForm"]["tel"].value;
+
+
+				if(isNaN(x)) {
+				    alert("Phone  must be numeric");
+				     return false;
+					}
+				if (x.length != 10){
+
+				    alert("enter correct Phone Number");
+				    return false;
+					}
+					var date =document.getElementById('CheckIn').value;
+				var inpDate = new Date(date);
+				var currDate = new Date();
+
+				if(inpDate.setHours(0, 0, 0, 0) <
+						currDate.setHours(0, 0, 0, 0))
+				{
+
+						alert("not possible to cancel booking now");
+						return false;
+				}
+				var date =document.getElementById('CheckOut').value;
+				var inpDate = new Date(date);
+				if(inpDate.setHours(0, 0, 0, 0) <=
+						currDate.setHours(0, 0, 0, 0))
+				{
+
+						alert("Something is wrong in checkOut date ");
+						return false;
+				}
+
+
+
+
+
+             return true;
+
+
+			}
+
+		</script>
+<style>
+table{width:1200px;}
+  input[type=text], select {
+  width: 100%;
+  padding: 2px 2px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.div1 {
+  margin-left:12%;
+  border-radius: 5px;
+  padding: 2px;
+  height:80%;
+  width:70%;
+}
+</style>
+	</head>
+
+<body>
+<div>
+	<div  class="myDiv"><img class="img1" src="static/images/logo2.jpg" title="logo">
+		<div class="contact-info">
+		  <p>Call us : <a href="tel:123-456-7890">123-456-7890</a></p>
+		  <p>Gpa : <a href="https://www.google.com/maps/d/viewer?ie=UTF8&oe=UTF8&msa=0&mid=1DqTgP7EKSPGcsho2DPDQkNinI9A">View map</a></p>
+		</div>
+	</div>
+
+	<div class="topnav">
+		<a  href="http://127.0.0.1:5000/">Home</a>
+		 <a href="http://127.0.0.1:5000/Gallery">Gallery</a>
+ 		 <a class="active" href="http://127.0.0.1:5000/booking">Booking</a>
+ 		 <a href="http://127.0.0.1:5000/contact">Contact</a>
+		 <a href="http://127.0.0.1:5000/services">Services</a>
+		 <a class="active" href="http://127.0.0.1:5000/cancel">Cancel</a>
+
+
+
+
+
+	</div>
+	<div>
+	<img src="static/images/hotel.webp" title="logo" height="345" width="1340">
+	</div>
+
+<div class="login-page">
+  <div class="form">
+
+    <form class="login-form" method="POST" action="http://127.0.0.1:5000/setbookcancel" onsubmit="return(validateForm());" >
+
+<fieldset>
+   <legend>Booking Cancel</legend>
+
+     <label for="tel">Phone Number*</label>
+    <input type="text" id="tel" name="PhoneNumber" placeholder="enter phnumber.." required>
+
+	<label for="room">Number of room*</label>
+    <input type="text" id="room" name= "room" placeholder="no. of rooms.." required>
+	<label for="typeroom">Type of rooms*</label>
+
+	<select id="typeroom" name="typeroom" required>
+      <option value="EXECUTIVE-ROOMS">EXECUTIVE-ROOMS</option>
+      <option value="LUXURY-ROOMS">LUXURY-ROOMS</option>
+      <option value="DELUXE-ROOMS">DELUXE-ROOMS</option>
+    </select>
+
+   <label for="CheckIn">Check In*:</label>
+    <input type="Date" id="CheckIn" name="CheckIn" required>
+    <label for="CheckOut">Check Out*:</label>
+    <input type="Date" id="CheckOut" name="CheckOut" required>
+	<input type="submit" value="Submit">
+</fieldset>
+  </form>
+</div>
+</div>
+  <footer>
+	<div><table>
+	<tr>
+	<td>
+	<div class="leftFooter"> <h2>Useful Links</h2>
+	      <a href="http://127.0.0.1:5000/" style="color:white">Home</a><br><br>
+
+ 	      <a href="http://127.0.0.1:5000/Gallery" style="color:white">Gallery</a><br><br>
+ 	      <a href="http://127.0.0.1:5000/booking" style="color:white">Booking</a><br><br>
+ 	      <a href="http://127.0.0.1:5000/contact" style="color:white">Contact</a><br><br>
+	      <a href="http://127.0.0.1:5000/services" style="color:white">Services</a>
+	</div>
+	</td>
+	<td>
+	<div class="centerFooter"> <h2>Find us</h2>
+		<address>
+		Healing Center, 176 W Street name,<br>
+		New York, NY 10014, US<br>
+		(+71) 987 654 3210<br>
+		(+71) 987 654 3210<br>
+
+		<a style="color:white" href="mailto:whiteSeasonhotel@gmail.com">whiteSeasonhotel@gmail.com</a>
+		</address>
+	</div>
+	</td>
+	<td>
+	<div class="rightFooter"> <h2>News letter</h2>
+		<input type="email" name="email" Placeholder="first.last name">
+		<input type="button" name="submit" value="submit"><br><br><br>
+		<a href="https://www.facebook.com/campaign/landing.php?campaign_id=1653993517&extra_1=s%7Cc%7C318504238004%7Ce%7Cfacebook%20login%7C&placement=&creative=318504238004&keyword=facebook%20login&partner_id=googlesem&extra_2=campaignid%3D1653993517%26adgroupid%3D63066388443%26matchtype%3De%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-1409285535%26loc_physical_ms%3D1007803%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=Cj0KCQjwsLWDBhCmARIsAPSL3_3cuKB9lApt3pNCH8tEs5TXB0Iy-8_uDUU9iJkC5qjlNNe597V848saAo2CEALw_wcB">
+                          <input type="image" name="fb" src="static/images/fb.png" alt="fb" height="35" width="40"> </a>
+                <a href="https://www.google.com/search?q=twitter+login&rlz=1C1CHZN_enIN941IN941&oq=twi&aqs=chrome.2.69i57j35i39j0i67i131i433j0i67j0i67i131i433j46i67j0i67i433j46i433l2.5839j0j15&sourceid=chrome&ie=UTF-8">
+				<input type="image" name="tt" src="static/images/tt.png" alt="tritter" height="40" width="40"></a>
+                <a href="https://www.instagram.com/accounts/login/"><input type="image" name="instagram" src="static/images/instagram.jpg" alt="instagram" height="35" width="40"></a>
+         </div>
+	</td>
+	</tr>
+	</table></div>
+ </footer>
+</div>
+</body>
+</html>
