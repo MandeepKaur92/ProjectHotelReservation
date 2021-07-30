@@ -132,6 +132,19 @@ def getBookingDetials():
     #return render_template('hotelIndex.html',message=message)
     return render_template('BookingMessage1.html', results=result)
 
+# http://127.0.0.1:5000/checkLogin
+@app.route('/checkLogin', methods=['GET', 'POST'])
+def checkLogin():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        message = "successfully complete"
+        if(username=="mandeep"):
+             if(password=="123"):
+
+                 return render_template('adminWelcome.html', message=message)
+        else:
+            return render_template('message.html', message=message)
 
 if __name__ == '__main__':
     app.run()
