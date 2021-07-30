@@ -1,0 +1,3 @@
+- https://www.digitalocean.com/community/tutorials/processing-incoming-request-data-in-flask
+- https://www.codegrepper.com/code-examples/typescript/get+arguments+from+url+flask
+- https://www.kite.com/python/answers/how-to-get-parameters-from-a-url-using-flask-in-python

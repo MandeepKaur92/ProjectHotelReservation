@@ -1,0 +1,13 @@
+table{
+	
+        border-spacing:2px;
+	 }
+td{
+ 	rowspan:0;
+        colspan:0;
+	padding: 50px;
+	text-align:center;
+	
+
+}
+.img1{height:170px; width:320px;}
