@@ -40,6 +40,9 @@ def booking():
 @app.route('/cancel')
 def cancel():
     return render_template('cancel.html')  # Using render function from flask
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')  # Using render function from flask
 
 
 
