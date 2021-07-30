@@ -61,6 +61,32 @@ def setFeedBackDetials():
     message="Booking successfully complete"
 
     return render_template('hotelIndex.html',message=message)
+#http://127.0.0.1:5000/setContactDetials
+@app.route('/setContactDetials', methods=['GET', 'POST'])
+def setContactDetials():
+    db = connect_to_monogodb()
+    print(db.list_collection_names())
+    cBookingDetials = db["ContactDetials"]
+    if request.method == 'POST':
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        Message= request.form.get('Message')
+        Email=request.form.get('Email')
+        result ='''  <h1>First Name : {}<h1>
+                              <h1>Last Name : {}<h1> 
+                              <h1>Message: {}<h1>
+                '''
+
+    #return result.format(firstname, lastname,Message)
+    cBookingDetials.insert({'firstname': firstname, 'lastname': lastname, 'Message': Message,'Email':Email})
+
+    results = cBookingDetials.find()
+    print(results)
+    for row in results:
+        print(row)
+    message = "Meessage send Successfully"
+
+    return render_template('hotelIndex.html', message=message)
 
 
 
