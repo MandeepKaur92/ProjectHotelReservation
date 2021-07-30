@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+</head>
+<body>
+<table>
+    <th>firstname</th>
+<th>lastname</th>
+<th>country</th>
+<th>Email</th>
+<th>PhoneNumber</th>
+<th>No_of_adult</th>
+<th>No_of_kids</th>
+<th>Room_Type</th>
+<th>CheckIn</th>
+<th>CheckOut</th>
+
+{% for y in results %}
+
+<tr>
+
+   <td>{{ y['firstname'] }}</td>
+   <td>{{ y['lastname'] }}</td>
+   <td>{{ y['country'] }}</td>
+    <td>{{ y['Email'] }}</td>
+   <td>{{ y['PhoneNumber'] }}</td>
+   <td>{{ y['No_of_adult'] }}</td>
+    <td>{{ y['No_of_kids'] }}</td>
+   <td>{{ y['Room_Type'] }}</td>
+   <td>{{ y['CheckIn'] }}</td>
+    <td>{{ y['CheckOut'] }}</td>
+</tr><br><br>
+{% endfor %}
+    </table>
+</body>
+</html>
