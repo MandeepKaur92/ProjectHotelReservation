@@ -50,6 +50,13 @@ def avail():
     return render_template('avalibility.html')  # Using render function from flask
 
 
+# http://127.0.0.1:5000/History
+
+@app.route('/history')
+def history():
+    return render_template('History.html')  # Using render function from flask
+
+
 
 
 @app.route('/setFeedBackDetials', methods=['GET', 'POST'])
@@ -216,6 +223,20 @@ def setbookAvail():
         return render_template('booking2.html', message=message)
     else:
         return render_template('message.html', message=message)
+    
+    
+    @app.route('/sethistory', methods=['GET', 'POST'])
+def sethistory():
+    if request.method == 'POST':
+        typeroom = request.form.get('typeroom')
+        CheckIn = request.form.get('CheckIn')
+        CheckOut = request.form.get('CheckOut')
+        db = connect_to_monogodb()
+        cBookingDetials = db["BookingDetials"]
+        col=['firstname', 'lastname', 'country', 'Email', 'PhoneNumber', 'No_of_adult', 'No_of_kids', 'No_of_rooms', 'Room_Type', 'CheckIn', 'CheckOut']
+        results = cBookingDetials.find({'$and':[{"CheckIn": CheckIn, "CheckOut": CheckOut, "Room_Type": typeroom}]},col)
+        return render_template('showhistory.html', results=results)
+
 
 
 if __name__ == '__main__':
