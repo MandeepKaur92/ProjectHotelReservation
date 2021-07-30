@@ -31,8 +31,15 @@ def Gallery():
 def services():
     return render_template('services.html')  # Using render function from flask
 
+#http://127.0.0.1:5000/booking2
+@app.route('/booking')
+def booking():
+    return render_template('booking2.html')  # Using render function from flask
 
-
+#http://127.0.0.1:5000/cancel
+@app.route('/cancel')
+def cancel():
+    return render_template('cancel.html')  # Using render function from flask
 
 
 
@@ -145,11 +152,34 @@ def checkLogin():
                  return render_template('adminWelcome.html', message=message)
         else:
             return render_template('message.html', message=message)
+        
  
-# http://127.0.0.1:5000/Gallery
+ 
+# http://127.0.0.1:5000/Login
 @app.route('/login')
 def login():
     return render_template('Login.html')
+
+@app.route('/setbookcancel', methods=['GET', 'POST'])
+def setbookcancel():
+    if request.method == 'POST':
+        PhoneNumber=request.form.get('PhoneNumber')
+        room = request.form.get('room')
+        typeroom = request.form.get('typeroom')
+        CheckIn= request.form.get('CheckIn')
+        CheckOut=request.form.get('CheckOut')
+
+        #result ='''  <h1>No. room: {}<h1>  <h1>typeroom : {}<h1> <h1>CheckIn: {}<h1> <h1> CheckOut : {}<h1>'''
+
+   # return result.format(room,typeroom , CheckIn, CheckOut)
+    db = connect_to_monogodb()
+    cBookingDetials = db["BookingDetials"]
+    results = cBookingDetials.remove({'$and':[{"PhoneNumber":PhoneNumber,"No_of_rooms":room,"CheckIn":CheckIn,"CheckOut":CheckOut,"Room_Type":typeroom}]})
+    print(results)
+
+
+    result ='''  <h1>{}<h1> '''
+    return result.format("BOOKING CANCEL SUCCESSFULLY")
 
 if __name__ == '__main__':
     app.run()
