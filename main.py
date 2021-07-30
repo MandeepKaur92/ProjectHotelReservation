@@ -44,6 +44,12 @@ def cancel():
 def contact():
     return render_template('contact.html')  # Using render function from flask
 
+#http://127.0.0.1:5000/avail
+@app.route('/avail')
+def avail():
+    return render_template('avalibility.html')  # Using render function from flask
+
+
 
 
 @app.route('/setFeedBackDetials', methods=['GET', 'POST'])
