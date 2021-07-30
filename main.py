@@ -145,6 +145,11 @@ def checkLogin():
                  return render_template('adminWelcome.html', message=message)
         else:
             return render_template('message.html', message=message)
+ 
+# http://127.0.0.1:5000/Gallery
+@app.route('/login')
+def login():
+    return render_template('Login.html')
 
 if __name__ == '__main__':
     app.run()
