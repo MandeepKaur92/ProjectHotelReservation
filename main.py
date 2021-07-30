@@ -184,5 +184,33 @@ def setbookcancel():
     result ='''  <h1>{}<h1> '''
     return result.format("BOOKING CANCEL SUCCESSFULLY")
 
+@app.route('/setbookAvail', methods=['GET', 'POST'])
+def setbookAvail():
+    if request.method == 'POST':
+        room = request.form.get('room')
+        typeroom = request.form.get('typeroom')
+        CheckIn= request.form.get('CheckIn')
+        CheckOut=request.form.get('CheckOut')
+
+        #result ='''  <h1>No. room: {}<h1>  <h1>typeroom : {}<h1> <h1>CheckIn: {}<h1> <h1> CheckOut : {}<h1>'''
+
+   # return result.format(room,typeroom , CheckIn, CheckOut)
+    db = connect_to_monogodb()
+    cBookingDetials = db["AvailableRooms"]
+    results = cBookingDetials.find({"No_of_rooms":room,"CheckIn":CheckIn,"CheckOut":CheckOut,"Room_Type":typeroom})
+    print(results)
+    total=0
+    for row in results:
+          total+=int(row["No_of_rooms"])
+          print(row)
+
+    message = "Booking successfully complete"
+
+    if(total!=0):
+        return render_template('booking2.html', message=message)
+    else:
+        return render_template('message.html', message=message)
+
+
 if __name__ == '__main__':
     app.run()
