@@ -190,12 +190,38 @@ def setbookcancel():
    # return result.format(room,typeroom , CheckIn, CheckOut)
     db = connect_to_monogodb()
     cBookingDetials = db["BookingDetials"]
-    results = cBookingDetials.remove({'$and':[{"PhoneNumber":PhoneNumber,"No_of_rooms":room,"CheckIn":CheckIn,"CheckOut":CheckOut,"Room_Type":typeroom}]})
-    print(results)
+        try:
+        results = cBookingDetials.delete_one({'$and':[{"PhoneNumber":PhoneNumber,"No_of_rooms":room,"CheckIn":CheckIn,"CheckOut":CheckOut,"Room_Type":typeroom}]})
+        print(results)
+        x=0
+        for x in results.find():
+            print(x)
+        if(x!=0):
+            result = '''  <h1>{}<h1>
+                                <h1>PhoneNumber:{}<h1>
+                                <h1> Number of rooms :{}<h1>
+                                <h1>typeroom:{}<h1>
+                                <h1> CheckIn:{}<h1>
+                                <h1> CheckOut:{}<h1>'''
+            return result.format("BOOKING CANCEL SUCCESSFULLY", PhoneNumber, room, typeroom, CheckIn, CheckOut)
+        else:
+            result = '''  <h1>{}<h1>
+                                        <h1>PhoneNumber:{}<h1>
+                                        <h1>Number of rooms:{}<h1>
+                                        <h1>typeroom:{}<h1>
+                                        <h1> CheckIn:{}<h1>
+                                        <h1> CheckOut:{}<h1>'''
+            return result.format("BOOKING  NOT CANCEL ", PhoneNumber, room, typeroom, CheckIn, CheckOut)
 
+    except:
+            result = '''  <h1>{}<h1>
+                            <h1>PhoneNumber:{}<h1>
+                            <h1>room:{}<h1>
+                            <h1>typeroom:{}<h1>
+                            <h1> CheckIn:{}<h1>
+                            <h1> CheckOut:{}<h1>'''
+            return result.format("BOOKING  NOT CANCEL ", PhoneNumber, room, typeroom, CheckIn, CheckOut)
 
-    result ='''  <h1>{}<h1> '''
-    return result.format("BOOKING CANCEL SUCCESSFULLY")
 
 @app.route('/setbookAvail', methods=['GET', 'POST'])
 def setbookAvail():
