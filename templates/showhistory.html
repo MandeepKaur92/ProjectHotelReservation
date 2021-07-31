@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8">
-    <title>Title</title>
+     <title>Hotel Website | History</title>
+		<link rel="stylesheet" href="static/css/style.css">
+		<link rel="stylesheet" href="static/css/login.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
 table {
   font-family: arial, sans-serif;
@@ -24,6 +28,29 @@ tr:nth-child(even) {
 
 </head>
 <body>
+     <div  class="myDiv"><img class="img1" src="static/images/logo2.jpg" title="logo">
+		<div class="contact-info">
+		  <p>Call us : <a href="tel:123-456-7890">123-456-7890</a></p>
+		  <p>Gpa : <a href="https://www.google.com/maps/d/viewer?ie=UTF8&oe=UTF8&msa=0&mid=1DqTgP7EKSPGcsho2DPDQkNinI9A">View map</a></p>
+		</div>
+	</div>
+
+	<div class="topnav">
+		<a  href="http://127.0.0.1:5000/">Home</a>
+		<a href="http://127.0.0.1:5000/contact">Contact</a>
+		 <a href="http://127.0.0.1:5000/services">Services</a>
+		<a class="active" href="http://127.0.0.1:5000/history">History</a>
+		<a href="http://127.0.0.1:5000/delete">Delete Record</a>
+
+
+
+
+	</div>
+	<div>
+	<img src="static/images/hotel.webp" title="logo" height="345" width="1340">
+	</div>
+   <h1>Record of Bookings</h1>
+<div>
 <table>
     <th>firstname</th>
 <th>lastname</th>
@@ -52,6 +79,8 @@ tr:nth-child(even) {
     <td>{{ y['CheckOut'] }}</td>
 </tr><br><br>
 {% endfor %}
-    </table>
+</table>
+     </div>
+<br><br><br><br><br><br>
 </body>
 </html>
