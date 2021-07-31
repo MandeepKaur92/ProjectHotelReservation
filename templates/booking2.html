@@ -6,6 +6,79 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
+		<script>
+			function validateForm() {
+                let x = document.forms["myForm"]["tel"].value;
+
+
+				if(isNaN(x)) {
+				    alert("Phone  must be numeric");
+				     return false;
+					}
+				if (x.length != 10){
+
+				    alert("enter correct Phone Number");
+				    return false;
+					}
+				x = document.forms["myForm"]["Adult"].value;
+
+				if (isNaN(x)) {
+				    alert("Number of Adult  must be numeric");
+				    return false;
+					}
+				x = document.forms["myForm"]["Kids"].value;
+
+				if (isNaN(x)) {
+				    alert("Number of Kids  must be numeric");
+				    return false;
+					}
+				x = document.forms["myForm"]["room"].value;
+
+				if (isNaN(x)) {
+				    alert("Number of rooms must be numeric");
+				    return false;
+					}
+				if (x < 1){
+				    alert("enter minimum 1 room");
+				    return false;
+					}
+				var a=parseInt(x=document.forms["myForm"]["Adult"].value);
+				var k=parseInt(x=document.forms["myForm"]["Kids"].value);
+				var total=a+k;
+				var r = parseInt(x = document.forms["myForm"]["room"].value);
+				if(!(total!=r)||total!=r+1)
+				{
+					alert("only two person can stay in a room");
+					return false;
+				}
+
+				var date =document.getElementById('CheckIn').value;
+				var inpDate = new Date(date);
+				var currDate = new Date();
+
+				if(inpDate.setHours(0, 0, 0, 0) <
+						currDate.setHours(0, 0, 0, 0))
+				{
+
+						alert("not booking possible");
+						return false;
+				}
+				var date =document.getElementById('CheckOut').value;
+				var inpDate = new Date(date);
+				if(inpDate.setHours(0, 0, 0, 0) <=
+						currDate.setHours(0, 0, 0, 0))
+				{
+
+						alert("Something is wrong in checkOut date ");
+						return false;
+				}
+
+
+             return true;
+			}
+
+		</script>
+		
 <style>
 table{width:1200px;}
   input[type=text], select {
@@ -69,7 +142,7 @@ input[type=submit]:hover {
 
 <div class="div1">
 	<main>
-	<form name="myForm" action="http://127.0.0.1:5000/getBookingDetials" method="post">
+	<form name="myForm" action="http://127.0.0.1:5000/getBookingDetials" method="post" onsubmit="return(validateForm());">
 
 	<fieldset>
    <legend>Booking</legend>
