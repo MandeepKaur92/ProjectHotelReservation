@@ -89,9 +89,10 @@ def history():
 def login():
     return render_template('Login.html') # Using render function from flask
 
-
-
-
+#http://127.0.0.1:5000/delete
+@app.route('/delete')
+def delete():
+    return render_template('delete.html')  # Using render function from flask
 
 @app.route('/setFeedBackDetials', methods=['GET', 'POST'])
 #to store feedback in database
@@ -359,6 +360,58 @@ def sethistory():
         
         #show data on showhistory
         return render_template('showhistory.html', results=results)
+    
+#http://127.0.0.1:5000/setbookdelete
+@app.route('/setbookdelete', methods=['GET', 'POST'])
+#method for delete booking
+def setbookdelete():
+    if request.method == 'POST':
+
+        #retrieve data from textbox
+        PhoneNumber=request.form.get('PhoneNumber')
+        room = request.form.get('room')
+        typeroom = request.form.get('typeroom')
+        CheckIn= request.form.get('CheckIn')
+        CheckOut=request.form.get('CheckOut')
+
+
+    try:
+        # call method for connection
+        db = connect_to_monogodb()
+
+        # set collection
+        cBookingDetials = db["BookingDetials"]
+    except:
+        print("not connect")
+
+    #delete data from database
+    results = cBookingDetials.remove({'$and':[{"PhoneNumber":PhoneNumber,"No_of_rooms":room,"CheckIn":CheckIn,"CheckOut":CheckOut,"Room_Type":typeroom}]})
+    print(results)
+    row={}
+    for row in results:
+            print(row)
+
+
+    message = "Booking successfully complete"
+
+    if (len(row) != 0):
+        result = '''  <h1>{}<h1>
+                                      <h1>PhoneNumber:{}<h1>
+                                      <h1>Number of rooms:{}<h1>
+                                      <h1>typeroom:{}<h1>
+                                      <h1> CheckIn:{}<h1>
+                                      <h1> CheckOut:{}<h1>'''
+        return result.format("BOOKING  DELETE ", PhoneNumber, room, typeroom, CheckIn, CheckOut)
+
+    else:
+            result = '''  <h1>{}<h1>
+                           <h1>PhoneNumber:{}<h1>
+                           <h1>Number of rooms:{}<h1>
+                           <h1>typeroom:{}<h1>
+                           <h1> CheckIn:{}<h1>
+                           <h1> CheckOut:{}<h1>'''
+            return result.format("BOOKING  NOT DELETE ", PhoneNumber, room, typeroom, CheckIn, CheckOut)
+
 
 
 
