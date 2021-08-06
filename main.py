@@ -229,21 +229,22 @@ def setbookcancel():
         CheckOut=request.form.get('CheckOut')
 
       
-
+   try:
    #call method for connection
     db = connect_to_monogodb()
     #collection BookingDetials
     cBookingDetials = db["BookingDetials"]
-        try:
+    except:
+        print("not connect")    
             
-         #delete data from monogodb
-        results = cBookingDetials.delete_one({'$and':[{"PhoneNumber":PhoneNumber,"No_of_rooms":room,"CheckIn":CheckIn,"CheckOut":CheckOut,"Room_Type":typeroom}]})
-        print(results)
-        x=0
-        for x in results.find():
-            print(x)
-          #if data deleted than message show  BOOKING CANCEL SUCCESSFULLY with all detials
-        if(x!=0):
+     #delete data from monogodb
+     results = cBookingDetials.delete_one({'$and':[{"PhoneNumber":PhoneNumber,"No_of_rooms":room,"CheckIn":CheckIn,"CheckOut":CheckOut,"Room_Type":typeroom}]})
+     print(results)
+     x={}
+     for x in results:
+           print(x)
+     #if data deleted than message show  BOOKING CANCEL SUCCESSFULLY with all detials
+     if(len(x)!=0):
             result = '''  <h1>{}<h1>
                                 <h1>PhoneNumber:{}<h1>
                                 <h1> Number of rooms :{}<h1>
@@ -260,15 +261,7 @@ def setbookcancel():
                                         <h1> CheckIn:{}<h1>
                                         <h1> CheckOut:{}<h1>'''
             return result.format("BOOKING  NOT CANCEL ", PhoneNumber, room, typeroom, CheckIn, CheckOut)
-    #if any error occure than message show BOOKING  NOT CANCEL with all detials
-    except:
-            result = '''  <h1>{}<h1>
-                            <h1>PhoneNumber:{}<h1>
-                            <h1>room:{}<h1>
-                            <h1>typeroom:{}<h1>
-                            <h1> CheckIn:{}<h1>
-                            <h1> CheckOut:{}<h1>'''
-            return result.format("BOOKING  NOT CANCEL ", PhoneNumber, room, typeroom, CheckIn, CheckOut)
+   
 
 
 @app.route('/setbookAvail', methods=['GET', 'POST'])
