@@ -201,19 +201,23 @@ def getBookingDetials():
 #method for login to check username and password is valid or not
 def checkLogin():
     if request.method == 'POST':
-        #retreive data
         username = request.form.get('username')
         password = request.form.get('password')
-       
-        #compare username and password is valid or not
-        if(username=="mandeep"):
-             if(password=="123"):
-                  #if valid than 'adminWelcome.html' show
-                 return render_template('adminWelcome.html', message="")
+
+        db = connect_to_monogodb()
+        print(db.list_collection_names())
+        cBookingDetials = db["Login"]
+        results = cBookingDetials.find({'$and': [{"username": username, "password": password}]})
+        x={}
+        for x in results:
+            print(x)
+        if(len(x)!=0):
+             return render_template('adminWelcome.html', message="")
         else:
-            #if not message show
-             message = "username or password is incorrect"
+            message = "Username or Password is wrong"
             return render_template('message.html', message=message)
+
+
         
  
  
