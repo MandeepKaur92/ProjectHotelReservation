@@ -13,6 +13,21 @@ def  connect_to_monogodb():
     db = my_client["HotelReservation"]
     return db;
 
+def email(customeremail, checkin, checkout):
+    with smtplib.SMTP('smtp.gmail.com',587) as smtp:
+        #idnetifies mail server
+        smtp.ehlo()
+        #encrypted traffic
+        smtp.starttls()
+        #reidnetifies encrypted mail server
+        smtp.ehlo()
+        smtp.login("customer123saa@gmail.com", "customer123saCusto-")
+        subject = 'Congrats ! Your Booking is Done'
+        body = 'Hi ! You have booked reservation with us. CheckinDate: '+checkin+' CheckoutDate: '+checkout
+        msg = f'Subject: {subject}\n\n{body}'
+        smtp.sendmail("customer123saa@gmail.com", customeremail ,msg)
+
+
 # http://127.0.0.1:5000/
 @app.route('/', methods=['GET', 'POST'])
 #to show hotelIndex webpage
