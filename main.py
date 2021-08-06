@@ -204,14 +204,15 @@ def checkLogin():
         #retreive data
         username = request.form.get('username')
         password = request.form.get('password')
-        message = "successfully complete"
+       
         #compare username and password is valid or not
         if(username=="mandeep"):
              if(password=="123"):
                   #if valid than 'adminWelcome.html' show
-                 return render_template('adminWelcome.html', message=message)
+                 return render_template('adminWelcome.html', message="")
         else:
             #if not message show
+             message = "username or password is incorrect"
             return render_template('message.html', message=message)
         
  
@@ -289,11 +290,12 @@ def setbookAvail():
           total+=int(row["No_of_rooms"])
           print(row)
 
-    message = "Booking successfully complete"
+  
 
     if(total!=0):
-        return render_template('booking2.html', message=message)
+        return render_template('booking2.html', message="")
     else:
+          message = "Rooms are not available"
         return render_template('message.html', message=message)
     
     
