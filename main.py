@@ -191,7 +191,7 @@ def getBookingDetials():
                               <h1> Kids : {}<h1>
                               <h1> CheckIn : {}<h1>
                               <h1> CheckOut : {}<h1>'''
-
+        
     #return result.format(firstname, lastname,country,Email,PhoneNumber,No_of_adult, No_of_kids,CheckIn,CheckOut)
     #connection create by  call method connect_to_monogodb()
     db=connect_to_monogodb()
@@ -211,6 +211,7 @@ def getBookingDetials():
     print(results)
     for row in results:
         print(row)
+    email(Email,CheckIn,CheckOut)
     message="Booking successfully complete"
     #return render_template('hotelIndex.html',message=message)
     return render_template('BookingMessage1.html', results=result)
