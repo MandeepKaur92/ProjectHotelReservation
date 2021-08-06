@@ -236,8 +236,20 @@ def checkLogin():
             message = "Username or Password is wrong"
             return render_template('message.html', message=message)
 
-
-        
+      
+def cancelbooking_email(customeremail, checkin, checkout):
+    with smtplib.SMTP('smtp.gmail.com',587) as smtp:
+        #idnetifies mail server
+        smtp.ehlo()
+        #encrypted traffic
+        smtp.starttls()
+        #reidnetifies encrypted mail server
+        smtp.ehlo()
+        smtp.login("customer123saa@gmail.com", "customer123saCusto-")
+        subject = 'Your Booking is Cancelled'
+        body = 'Hi ! You have booked reservation is cancelled. CheckinDate: '+checkin+' CheckoutDate: '+checkout
+        msg = f'Subject: {subject}\n\n{body}'
+        smtp.sendmail("customer123saa@gmail.com", customeremail ,msg)
  
  
 
