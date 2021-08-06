@@ -27,6 +27,10 @@ def hello_world():
 def Gallery():
     return render_template('Gallery.html')  # Using render function from flask
 
+@app.route('/ChangePassword')
+def ChangePassword():
+    return render_template('ChangePassword.html')  # Using render function from flask
+
 
 
 # http://127.0.0.1:5000/services
