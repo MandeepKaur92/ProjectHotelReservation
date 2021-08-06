@@ -287,6 +287,7 @@ def setbookcancel():
                                 <h1>typeroom:{}<h1>
                                 <h1> CheckIn:{}<h1>
                                 <h1> CheckOut:{}<h1>'''
+            cancelbooking_email(Email, CheckIn, CheckOut)
             return result.format("BOOKING CANCEL SUCCESSFULLY", PhoneNumber, room, typeroom, CheckIn, CheckOut)
         #if data not deleted than message show BOOKING  NOT CANCEL with all detials
         else:
